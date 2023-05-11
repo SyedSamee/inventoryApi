@@ -4,8 +4,11 @@ import mongooseConnect from './config/mongoConfig.js';
 import authRoute from './routes/auth_Routes.js'
 import dotenv from "dotenv"
 import private_middle_ware from './middleware/privateMiddleware.js';
-dotenv.config()
+
 const app = express();
+
+
+dotenv.config();
 app.use(express.json())
 app.use('/',inv_Route);
 
