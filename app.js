@@ -10,6 +10,9 @@ const app = express();
 
 dotenv.config();
 app.use(express.json())
+app.get("/",(req,res)=>{
+    res.send("hello world");
+})
 app.use('/',inv_Route);
 
 app.use('/auth',authRoute)

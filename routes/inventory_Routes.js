@@ -18,8 +18,6 @@ Router.post('/add/inventory',async(req,res)=>{
 
 if(dataResp){
     res.status(201).send({"success":true,"response":dataResp});
-}else{
-    //something went wrong
 }
    }else{
     console.log("one of the field is empty");
@@ -69,7 +67,33 @@ Router.post('/update/inventory/stock',async(req,res)=>{
       res.status(403).send({"successfull":false,"error":"one or more field is empty or stock format is not right"});
    }
 
-});
+
+
+
+},
+Router.delete('/delete/inventory',async(req,res)=>{
+   const {prId} = req.body;
+
+   if(prId){
+     try {
+      const response =  await inventorySchema.findByIdAndDelete(prId);
+
+   
+         res.status(200).send({"successfull":true,"msg":"item deleted"});
+         
+ 
+     } catch (error) {
+      res.status(403).send({"successfull":false,"msg":"id does'nt exist"});
+     }
+   }else{
+ 
+
+      res.status(403).send({"successfull":false,"error":"id cannot be empty"});
+   }
+
+})
+
+);
 
 
 
